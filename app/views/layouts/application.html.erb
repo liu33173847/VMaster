@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VMaster</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="#" class="brand">VMaster</a>
+				<ul class="nav pull-right">
+					<li><%= link_to "About", about_path%></li>
+					<li><%= link_to "Blogs", feed_path%></li>
+					<% if user_signed_in? %>
+					<li><%= link_to 'Friends',user_friendships_path %></li>
+					<li><%= link_to current_user.full_name, edit_user_registration_path%></li>
+					<li><%= link_to "Log Out", logout_path %> </li>
+					<% else %>
+						<li><%= link_to "Register", register_path %></li>
+						<li><%= link_to "Log in", login_path %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<% flash.each do |type, message| %>
+			<div class="alert <%= flash_class type%>">
+				<button class="close" data-dismiss="alert">x</button>
+				<%= message %>
+			</div>
+		<% end %>
+<!-- 		<% if flash[:notice] %>
+			<div class="alert alert-success">
+				<button class="close" data-dismiss="alert">x</button>
+				<%= flash[:notice] %>
+			</div>
+		<% end %>
+
+		<% if flash[:alert] %>
+			<div class="alert alert-error">
+				<button class="close" data-dismiss="alert">x</button>
+				<%= flash[:alert] %>
+			</div>
+		<% end %>  -->
+		
+ 		<%= yield %>
+	</div>
+
+
+</body>
+</html>

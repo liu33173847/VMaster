@@ -1,0 +1,21 @@
+
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name),html: {class: "well"})  do |f| %>
+  <%= devise_error_messages!%>
+  <fieldset>
+    <legend>Sign Up</legend>
+  <%= f.input :first_name %>
+
+  <%= f.input :last_name %>
+
+  <%= f.input :profile_name %>
+
+  <%= f.input :email, :autofocus => true %>
+
+  <%= f.input :password, hint: false, error_html: { id: 'password_error'} %>
+  <%= f.input :password_confirmation %>
+  </fieldset>
+  <div><%= f.button :submit, "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
